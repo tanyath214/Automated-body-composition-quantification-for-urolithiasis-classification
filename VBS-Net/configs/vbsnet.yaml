@@ -1,0 +1,37 @@
+seed: 42
+deterministic: false
+device: auto
+
+model:
+  in_channels: 1
+  num_classes: 4
+  input_size: 96
+  encoder_channels: [32, 64, 128, 256, 512]
+  sam_channels: 256
+  use_sam: false
+  sam_checkpoint:
+  sam_model_type: vit_b
+
+data:
+  train:
+    images_dir: data/train/images
+    masks_dir: data/train/masks
+    csv_file:
+  val:
+    images_dir: data/val/images
+    masks_dir: data/val/masks
+    csv_file:
+
+augmentation:
+  translate_mm: 5.0
+  pixel_spacing_mm: 1.0
+  scale_range: [0.9, 1.1]
+  rotate_degrees: 10.0
+
+training:
+  epochs: 100
+  batch_size: 8
+  num_workers: 0
+  lr: 0.0001
+  weight_decay: 0.00001
+  output_dir: outputs/vbsnet
